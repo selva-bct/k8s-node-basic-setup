@@ -1,0 +1,38 @@
+apiversion: test/1.0
+kind: Deployment
+metadata:
+  name: app-health-check-app
+  labels: 
+    app: app-health-check-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels: 
+      app: app-health-check-app
+  template:
+    metadata:
+      labels: 
+        app: app-health-cheack-app
+    spec: 
+      containers:
+      - image: tibawebregistry.azurecr.io/tiba/tiba-services:v3
+        name: api
+        imagePullPolicy: Always
+        resources: {}
+        ports:
+          - containerPort: 80
+  status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: health-check-app-services
+  labels:
+    run: health-check-app-services
+spec:
+  ports:
+    - port: 80
+      protocol: TCP
+  selector:
+    app: app-health-check-app
+  type: LoadBalancer
