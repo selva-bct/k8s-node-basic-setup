@@ -106,7 +106,3 @@ dist-server
 
 test-folder
 fhir-test-module
-# .vscode
-/package-lock.json
-/yarn.lock
-/yarn.lock
